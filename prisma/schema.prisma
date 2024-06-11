@@ -21,6 +21,10 @@ model User {
   email    String @unique
   hash     String
   username String
+
+  todos Todo[]
+
+  @@map("users")
 }
 
 model Todo {
@@ -30,4 +34,9 @@ model Todo {
 
   title       String
   description String?
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  @@map("todos")
 }
